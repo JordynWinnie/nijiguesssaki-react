@@ -22,12 +22,12 @@ const Home = () => {
         let tempLink = link.replace('https://open.spotify.com/playlist/', '')
         tempLink = tempLink.slice(0, 22)
 
-        fetch('/getToken')
+        fetch('/api/getToken')
             .then(res => {
                 return res.json()
             }).then(
                 data => {
-
+                    console.log(data)
                 }
             )
     }
