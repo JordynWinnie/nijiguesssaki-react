@@ -8,7 +8,7 @@ body {
 * {
     box-sizing: border-box;
     font-family: 'Noto Sans', sans-serif;
-    color: white;
+
 }
 
 .App {
@@ -22,6 +22,7 @@ body {
     align-items: stretch;
     padding: 0.5rem 1rem;
     gap: 2rem;
+    color: white;
 }
 
 .navBar ul {
@@ -43,4 +44,17 @@ body {
 
 .navBar li.active {
     background-color: rgba(255, 255, 255, 0.12);
+}
+
+.home label {
+    color: white;
+    display: flex;
+}
+
+.home input {
+    width: 100%;
+}
+
+.home p {
+    color: white;
 }
