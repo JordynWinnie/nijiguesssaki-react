@@ -3,7 +3,8 @@ const path = require('path');
 const express = require('express')
 const cors = require('cors')
 const qs = require('qs');
-const axios = require('axios')
+const axios = require('axios');
+const { response } = require('express');
 
 require('dotenv').config()
 
@@ -15,8 +16,7 @@ app.use(cors())
 let client_id = process.env.client_id
 let client_secret = process.env.client_secret
 
-app.get('/api/getToken', (req, res) => {
-
+const getToken = () => {
     const options = {
         method: 'POST',
         url: 'https://accounts.spotify.com/api/token',
@@ -26,10 +26,38 @@ app.get('/api/getToken', (req, res) => {
         },
         data: qs.stringify({ 'grant_type': 'client_credentials' })
     }
-    axios.request(options)
-        .then(response => res.json(response.data))
-        .catch(err => res.json(err))
 
+    return axios.request(options)
+        .then(response => {
+            return response.data['access_token']
+        }).catch(
+            err => {
+                return err.response
+            }
+        )
+}
+
+app.get('/api/getPlaylist', async (req, res) => {
+    const playlist_id = req.query.playlist_id
+    const token = await getToken()
+
+    const options = {
+        url: `https://api.spotify.com/v1/playlists/${playlist_id}?fields=id,owner,description,name,images,tracks(href,next,total)`,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    axios.request(options)
+        .then(response => {
+            res.json(response.data)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(400).send({
+                message: err
+            })
+        })
 })
 
 app.get('*', (req, res) => {

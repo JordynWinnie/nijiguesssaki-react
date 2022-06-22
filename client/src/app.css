@@ -1,60 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
-    margin: 0;
     background-color: black;
 }
 
-* {
-    box-sizing: border-box;
-    font-family: 'Noto Sans', sans-serif;
-
-}
-
-.App {
-    text-align: center;
-}
-
-.navBar {
-    background-color: #121212;
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    padding: 0.5rem 1rem;
-    gap: 2rem;
+p {
     color: white;
 }
 
-.navBar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 1rem;
-}
-
-.navBar a {
-    text-decoration: none;
-    color: inherit;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0 1rem
-}
-
-.navBar li.active {
-    background-color: rgba(255, 255, 255, 0.12);
-}
-
-.home label {
-    color: white;
-    display: flex;
-}
-
-.home input {
-    width: 100%;
-}
-
-.home p {
-    color: white;
+.btn {
+    @apply font-bold py-2 px-4 rounded text-white;
 }

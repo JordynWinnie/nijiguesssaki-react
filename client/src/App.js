@@ -4,13 +4,13 @@ import Guess from './Guess';
 import Header from './Header';
 import Home from './Home';
 import Setup from './Setup';
-
+import './app.css'
 export default function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="App h-screen">
         <Header />
-        <div className="content">
+        <div className="content h-full">
           <Routes>
             <Route path='/' element={<Home />}></Route>
             <Route path='/guess' element={<Guess />}></Route>
